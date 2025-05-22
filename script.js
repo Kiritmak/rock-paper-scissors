@@ -1,5 +1,6 @@
 let humanScore = 0,
-  computerScore = 0;
+  computerScore = 0,
+  gameID = 1;
 
 function getComputerChoice() {
   let rand = Math.random();
@@ -31,19 +32,30 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function handleResult(result, humanChoice, computerChoice) {
-  let message = ""
+  let message = "";
   switch (result) {
     case -1:
-      message = "It's a tie, better luck the next one"
+      message = "It's a tie, better luck the next one";
       break;
     case 0:
-      message = `Yieks! Looks like someone loose...\nSorry, ${computerChoice} beats ${humanChoice}`
-      computerScore++
-      break
+      message = `Yieks! Looks like someone loose...\nSorry, ${computerChoice} beats ${humanChoice}`;
+      computerScore++;
+      break;
     case 1:
-      message = `Congrats! You have succefully beat a machine, what an achievent, uh?\n${humanChoice} beats ${computerChoice}`
+      message = `Congrats! You have succefully beat a machine, what an achievent, uh?\n${humanChoice} beats ${computerChoice}`;
       humanScore++;
       break;
-    }
+  }
   console.log(message);
+}
+
+function playGame() {
+  humanScore = 0;
+  computerScore = 0;
+
+  console.groupCollapsed("Game Number " + gameID);
+  for (let k = 5; k > 0; k--) playRound(getHumanChoice(), getComputerChoice());
+  console.groupEnd("Game Number " + gameID);
+
+  gameID++;
 }
