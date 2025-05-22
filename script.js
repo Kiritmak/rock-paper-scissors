@@ -27,9 +27,23 @@ function playRound(humanChoice, computerChoice) {
     humanWins = 0;
   else if (humanChoice === computerChoice) humanWins = -1;
 
-
+  handleResult(humanWins, humanChoice, computerChoice);
 }
 
-function handleResult(result) {
-
+function handleResult(result, humanChoice, computerChoice) {
+  let message = ""
+  switch (result) {
+    case -1:
+      message = "It's a tie, better luck the next one"
+      break;
+    case 0:
+      message = `Yieks! Looks like someone loose...\nSorry, ${computerChoice} beats ${humanChoice}`
+      computerScore++
+      break
+    case 1:
+      message = `Congrats! You have succefully beat a machine, what an achievent, uh?\n${humanChoice} beats ${computerChoice}`
+      humanScore++;
+      break;
+    }
+  console.log(message);
 }
