@@ -1,0 +1,1 @@
+A little rock-paper-scissors game, learning how to use javascript
