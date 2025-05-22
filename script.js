@@ -8,3 +8,14 @@ function getComputerChoice() {
 
   return choice;
 }
+
+function getHumanChoice() {
+  let choice = "";
+  choice = prompt("Input your choice");
+  return choice;
+}
+
+console.log(getHumanChoice());
+console.log(getHumanChoice());
+console.log(getHumanChoice());
+console.log(getHumanChoice());
