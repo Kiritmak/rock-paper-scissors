@@ -63,3 +63,5 @@ function playGame() {
 
   gameID++;
 }
+
+playGame();
