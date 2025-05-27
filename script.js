@@ -50,19 +50,27 @@ function handleResult(result, humanChoice, computerChoice) {
 }
 
 function playGame() {
-  let winner = "The Human"
+  let winner = "The Human";
   humanScore = 0;
   computerScore = 0;
 
   console.groupCollapsed("Game Number " + gameID);
   for (let k = 5; k > 0; k--) playRound(getHumanChoice(), getComputerChoice());
-  if(computerScore===humanScore) winner = "Nobody, it's a tie"
-  else if(computerScore>humanScore) winner = "The Computer"
+  if (computerScore === humanScore) winner = "Nobody, it's a tie";
+  else if (computerScore > humanScore) winner = "The Computer";
   console.log(`And the winner is...\n${winner}`);
   console.groupEnd("Game Number " + gameID);
 
   gameID++;
 }
 
-playGame();
-
+const selectionBtns = document.querySelector("#player-choice-buttons");
+selectionBtns.addEventListener("click", (event) => {
+  if (event.target.classList.contains("choice-button")) {
+    const selection = event.target.dataset.choice;
+    console.group(selection)
+    console.log(selection);
+    playRound(selection, getComputerChoice());
+    console.groupEnd(selection)
+  }
+});
