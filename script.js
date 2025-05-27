@@ -1,6 +1,6 @@
 let humanScore = 0,
   computerScore = 0,
-  gameID = 1;
+  rounds = 0;
 
 const display = document.querySelector("#display");
 
@@ -22,6 +22,7 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+  rounds++;
   let humanWins = 1;
   if (humanChoice === "rock" && computerChoice === "paper") humanWins = 0;
   else if (humanChoice === "paper" && computerChoice === "scissors")
@@ -31,6 +32,14 @@ function playRound(humanChoice, computerChoice) {
   else if (humanChoice === computerChoice) humanWins = -1;
 
   handleResult(humanWins, humanChoice, computerChoice);
+  if(rounds === 5) {
+    let message = "It's a tie!";
+    if(computerScore > humanScore) message = "The computer has won!"
+    else if(humanScore > computerScore) message = "The human won!"
+    display.childNodes.forEach(elem => elem.textContent = "");
+    alert(message);
+    rounds=0;
+  }
 }
 
 function handleResult(result, humanChoice, computerChoice) {
@@ -48,22 +57,9 @@ function handleResult(result, humanChoice, computerChoice) {
       humanScore++;
       break;
   }
-  display.textContent = message;
-}
-
-function playGame() {
-  let winner = "The Human";
-  humanScore = 0;
-  computerScore = 0;
-
-  console.groupCollapsed("Game Number " + gameID);
-  for (let k = 5; k > 0; k--) playRound(getHumanChoice(), getComputerChoice());
-  if (computerScore === humanScore) winner = "Nobody, it's a tie";
-  else if (computerScore > humanScore) winner = "The Computer";
-  console.log(`And the winner is...\n${winner}`);
-  console.groupEnd("Game Number " + gameID);
-
-  gameID++;
+  const text = display.firstChild;
+  text.textContent = message;
+  text.nextSibling.textContent = `Human Score: ${humanScore}  Computer Score: ${computerScore}`;
 }
 
 const selectionBtns = document.querySelector("#player-choice-buttons");
