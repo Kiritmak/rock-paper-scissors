@@ -2,6 +2,8 @@ let humanScore = 0,
   computerScore = 0,
   gameID = 1;
 
+const display = document.querySelector("#display");
+
 function getComputerChoice() {
   let rand = Math.random();
   let choice = "";
@@ -46,7 +48,7 @@ function handleResult(result, humanChoice, computerChoice) {
       humanScore++;
       break;
   }
-  console.log(message);
+  display.textContent = message;
 }
 
 function playGame() {
@@ -68,9 +70,7 @@ const selectionBtns = document.querySelector("#player-choice-buttons");
 selectionBtns.addEventListener("click", (event) => {
   if (event.target.classList.contains("choice-button")) {
     const selection = event.target.dataset.choice;
-    console.group(selection)
     console.log(selection);
     playRound(selection, getComputerChoice());
-    console.groupEnd(selection)
   }
 });
