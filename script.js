@@ -38,7 +38,7 @@ function playRound(humanChoice, computerChoice) {
     else if(humanScore > computerScore) message = "The human won!"
     display.childNodes.forEach(elem => elem.textContent = "");
     alert(message);
-    rounds=0;
+    rounds=humanScore=computerScore=0;
   }
 }
 
